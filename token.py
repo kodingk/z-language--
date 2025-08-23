@@ -86,6 +86,7 @@ class Tokenizer:
         var = VAR_REGEX.match(self.src)
         if var is not None:
             var_name = var.group()
+            print(f"var_name {var_name}")
             self.src = self.src[len(var_name):].strip()
             return Token.VARIABLE, (var_name,)
 

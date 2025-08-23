@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="programming-language-z-interpreter">Programming Language Z Interpreter</h1>
+<p>이 프로젝트는 <a href="https://www.acmicpc.net/problem/3203">BOJ 3203번 문제</a>를 기반으로 한다.<br>
+추가 조건으로 전체 <code>REPEAT</code> 횟수의 곱은 <strong>1,000,000 이하</strong>라 가정하고, <strong>초기화되지 않은 변수를 사용하면 에러를 발생</strong>시키도록 한다.</p>
+<hr>
+<h2 id="%EC%8B%A4%ED%96%89-%ED%9D%90%EB%A6%84">실행 흐름</h2>
+<h3 id="1-tokenpy">1. <code>token.py</code></h3>
+<ul>
+<li>문자열을 <strong>토큰 단위로 분리</strong>하는 <strong>Tokenizer</strong>를 정의한다.</li>
+<li><strong>Token enum</strong>: 프로그램에서 사용할 토큰 종류
+<ul>
+<li>키워드: <code>BEGIN</code>, <code>REPEAT</code>, <code>STOP</code>, <code>PRINT</code></li>
+<li>연산자: <code>PLUS (+)</code>, <code>MINUS (-)</code>, <code>ASSIGN (=)</code></li>
+<li>피연산자: <code>VARIABLE</code>, <code>NUMBER</code>, <code>MULTIPLIED_VARIABLE</code></li>
+</ul>
+</li>
+<li><strong>정규식</strong>
+<ul>
+<li><code>VAR_REGEX = [a-z]</code></li>
+<li><code>NUM_REGEX = \d+</code></li>
+<li><code>MULTIPLIED_VAR_REGEX = (\d+)([a-z])</code></li>
+</ul>
+</li>
+<li><strong>Tokenizer 동작</strong>
+<ul>
+<li><code>__next__()</code>: 다음 토큰을 소비하고 반환한다.</li>
+<li><code>peek()</code>: 다음 토큰을 미리 확인하되 문자열은 그대로 둔다.<br>
+→ 즉, 입력 소스를 하나씩 읽어 **문법 요소(토큰)**로 변환한다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-statementpy">2. <code>statement.py</code></h3>
+<ul>
+<li>각 문장은 <code>run()</code> 메서드를 통해 실행 동작을 정의한다.</li>
+<li><strong>구현된 클래스</strong>
+<ul>
+<li><code>BeginStatement</code>: BEGIN ~ STOP 블록을 실행한다.</li>
+<li><code>RepeatStatement</code>: REPEAT ~ STOP 블록을 주어진 횟수만큼 실행한다.</li>
+<li><code>AssignStatement</code>: 변수를 대입한다.</li>
+<li><code>PrintStatement</code>: 변수 값을 출력한다.</li>
+<li><code>ExpressionStatement</code>: 식을 계산한다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-parserpy">3. <code>parser.py</code></h3>
+<ul>
+<li>토큰을 받아 <code>Statement</code> 형태로 변환한다.</li>
+<li>주요 메서드
+<ul>
+<li><code>parse_statement()</code>: 다음 토큰을 보고 어떤 문장인지 판단한다.</li>
+<li><code>parse_begin()</code>: BEGIN ~ STOP 블록을 파싱한다.</li>
+<li><code>parse_repeat()</code>: REPEAT ~ STOP 블록을 파싱한다.</li>
+<li><code>parse_assign()</code>: 대입문을 파싱한다.</li>
+<li><code>parse_print()</code>: 출력문을 파싱한다.</li>
+<li><code>parse_expression()</code>: 수식을 파싱한다.</li>
+</ul>
+</li>
+<li>이때 <code>BEGIN</code>과 <code>REPEAT</code>은 내부에 여러 문장을 가질 수 있으므로 <code>self.parse_statement()</code>를 재귀적으로 호출한다.</li>
+</ul>
+<hr>
+<h3 id="4-mainpy">4. <code>main.py</code></h3>
+<ul>
+<li>프로그램의 시작점이다.</li>
+<li><code>input.txt</code> 파일을 읽어 전체 소스 코드를 가져온다.</li>
+<li><code>Parser</code> 객체를 생성하여 문장을 하나씩 파싱한다.</li>
+<li>파싱된 문장을 실행(<code>stmt.run(env)</code>)하면서 <code>env</code>에 변수 값을 저장한다.</li>
+</ul>
+<hr>
+<h2 id="%EC%B6%94%EA%B0%80-%EA%B3%BC%EC%A0%9C">추가 과제</h2>
+<ol>
+<li>
+<p><strong>Tokenizer 최적화</strong><br>
+현재 <code>token.py</code>는 <code>self.src = self.src.strip()</code> 방식으로 문자열을 잘라내기 때문에 시간복잡도가 O(n^2)이 된다 (n은 문자열 길이).<br>
+이를 <code>pos</code> 변수를 도입해 현재 위치만 갱신하는 방식으로 최적화한다.</p>
+</li>
+<li>
+<p><strong>변수 확장</strong><br>
+현재 변수는 <code>[a-z]</code> 한 글자만 가능하다.<br>
+이를 <code>[a-zA-Z]+</code> 로 확장하고, 맨 앞에 숫자가 올 수 없게 하며, 필요하다면 숫자(<code>0-9</code>)를 포함하도록 더 확장한다.</p>
+</li>
+<li>
+<p><strong>초기화되지 않은 변수 처리</strong><br>
+현재는 초기화되지 않은 변수를 사용하면 에러를 발생시킨다.<br>
+이를 확장해 초기화되지 않은 변수를 사용할 때 <strong>자동으로 0으로 초기화</strong>되도록 한다.</p>
+</li>
+<li>
+<p><strong>기타 확장 아이디어</strong></p>
+<ul>
+<li>출력 형식을 다양화한다.</li>
+<li>최적화된 반복 처리(REPEAT 블록) 구현을 고려한다.</li>
+<li>에러 메시지를 보다 친절하게 제공한다.</li>
+</ul>
+</li>
+</ol>
+
+</body>
+</html>
