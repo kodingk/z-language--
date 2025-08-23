@@ -83,28 +83,21 @@ class Tokenizer:
         # 변수 및 숫자 - 주의: 숫자를 판별하기 전에 곱해진 변수인지 확인해야 함.
         # ------------------------------------------------------------
 
-        var = VAR_REGEX.match(self.src)
-        if var is not None:
-            var_name = var.group()
-            print(f"var_name {var_name}")
-            self.src = self.src[len(var_name):].strip()
-            return Token.VARIABLE, (var_name,)
+        # 아래 세 가지 토큰 처리를 구현하라.
+        #
+        # 1. VARIABLE (예: "a")
+        #    반환 형태 예시: (Token.VARIABLE, ("a",))
+        #
+        # 2. MULTIPLIED_VARIABLE (예: "12a")
+        #    반환 형태 예시: (Token.MULTIPLIED_VARIABLE, ("12", "a"))
+        #
+        # 3. NUMBER (예: "123")
+        #    반환 형태 예시: (Token.NUMBER, ("123",))
 
-        multiplied_var = MULTIPLIED_VAR_REGEX.match(self.src)
-        if multiplied_var is not None:
-            # groups는 (계수, 변수)의 튜플 형식으로 이루어짐.
-            group, groups = multiplied_var.group(), multiplied_var.groups()
-            self.src = self.src[len(group):].strip()
-            return Token.MULTIPLIED_VARIABLE, groups
-
-        num = NUM_REGEX.match(self.src)
-        if num is not None:
-            num_value = num.group()
-            self.src = self.src[len(num_value):].strip()
-            return Token.NUMBER, (num_value,)
+        raise NotImplementedError("VARIABLE, MULTIPLIED_VARIABLE, NUMBER 토큰 처리를 직접 구현하세요.")
 
         # 빈 문자열이면 [] 이어서 오류가 날 수 있지만, 이건 맨 윗 코드에서 strip을 해주기 때문에 오류가 날 일은 없음.
-        raise ValueError(f'정의되지 않은 토큰입니다: {self.src.split()[0]}')
+        # raise ValueError(f'정의되지 않은 토큰입니다: {self.src.split()[0]}')
 
     def peek(self) -> tuple[Token, tuple[str, ...]] | None:
         """
@@ -150,20 +143,18 @@ class Tokenizer:
         # 변수 및 숫자 - 주의: 숫자를 판별하기 전에 곱해진 변수인지 확인해야 함.
         # ------------------------------------------------------------
 
-        var = VAR_REGEX.match(self.src)
-        if var is not None:
-            var_name = var.group()
-            return Token.VARIABLE, (var_name,)
+        # 아래 세 가지 토큰 처리를 구현하라.
+        #
+        # 1. VARIABLE (예: "a")
+        #    반환 형태 예시: (Token.VARIABLE, ("a",))
+        #
+        # 2. MULTIPLIED_VARIABLE (예: "12a")
+        #    반환 형태 예시: (Token.MULTIPLIED_VARIABLE, ("12", "a"))
+        #
+        # 3. NUMBER (예: "123")
+        #    반환 형태 예시: (Token.NUMBER, ("123",))
 
-        multiplied_var = MULTIPLIED_VAR_REGEX.match(self.src)
-        if multiplied_var is not None:
-            # groups는 (계수, 변수)의 튜플 형식으로 이루어짐.
-            return Token.MULTIPLIED_VARIABLE, multiplied_var.groups()
-
-        num = NUM_REGEX.match(self.src)
-        if num is not None:
-            num_value = num.group()
-            return Token.NUMBER, (num_value,)
+        raise NotImplementedError("VARIABLE, MULTIPLIED_VARIABLE, NUMBER 토큰 처리를 직접 구현하세요.")
 
         # 빈 문자열이면 [] 이어서 오류가 날 수 있지만, 이건 맨 윗 코드에서 strip을 해주기 때문에 오류가 날 일은 없음.
-        raise ValueError(f'정의되지 않은 토큰입니다: {self.src.split()[0]}')
+        # raise ValueError(f'정의되지 않은 토큰입니다: {self.src.split()[0]}')

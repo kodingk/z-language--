@@ -25,9 +25,12 @@ class RepeatStatement(Statement):
         self.count = count
 
     def run(self, env: dict[str, int]):
-        for _ in range(self.count):
-            for statement in self.statements:
-                statement.run(env)
+        """
+        힌트:
+          - 내부 문장들을 count 번 실행한다.
+          - BeginStatement 의 동작 과정을 이해하도록 한다. 
+        """
+        raise NotImplementedError("RepeatStatement.run을 구현한다.")
 
 
 class ExpressionStatement(Statement):
@@ -35,32 +38,24 @@ class ExpressionStatement(Statement):
         self.tokens = tokens
 
     def run(self, env: dict[str, int]) -> int:
-        idx = 0
-        value = self.eval_unit(env, idx)
-        while idx + 1 < len(self.tokens):
-            if self.tokens[idx + 1][0] == Token.PLUS:
-                value += self.eval_unit(env, idx + 2)
-                idx += 2
-            elif self.tokens[idx + 1][0] == Token.MINUS:
-                value -= self.eval_unit(env, idx + 2)
-                idx += 2
-            else:
-                raise ValueError(f'유효하지 않은 토큰입니다: {self.tokens[idx + 1]}')
-
-        return value
+        """
+        힌트:
+          - parse_assign 에서 호출할 것이다. 해당 매소드에서 tokens 에 무엇이 들어가는지를 살펴본다. 
+          - 토큰을 좌→우로 보며 + / - 를 적용해 값을 계산한다.
+          - 개별 항은 eval_unit(...)으로 해석한다.
+          - 모듈러를 사용한다. 
+        """
+        raise NotImplementedError("ExpressionStatement.run을 구현한다.")
 
     def eval_unit(self, env: dict[str, int], token_idx: int) -> int:
-        token = self.tokens[token_idx]
-        if token[0] == Token.NUMBER:
-            return int(token[1][0]) % EVAL_BOUND
-        elif token[0] == Token.VARIABLE:
-            return env[token[1][0]] % EVAL_BOUND
-        elif token[0] == Token.MULTIPLIED_VARIABLE:
-            coeff = int(token[1][0])
-            var_name = token[1][1]
-            return coeff * env[var_name] % EVAL_BOUND
-
-        raise ValueError(f'유효하지 않은 토큰입니다: {token}')
+        """
+        힌트:
+          - NUMBER: 문자열 숫자를 정수로 바꾼 값.
+          - VARIABLE: env에서 변수 값을 읽는다. 초기화되지 않았다면 과제 조건에 맞게 처리한다.
+          - MULTIPLIED_VARIABLE: (계수, 변수명) 튜플을 이용해 계수 * 변수값.
+          - 모듈러를 적용한다.
+        """
+        raise NotImplementedError("ExpressionStatement.eval_unit을 구현한다.")
 
 
 class AssignStatement(Statement):
@@ -69,8 +64,12 @@ class AssignStatement(Statement):
         self.expression = expression
 
     def run(self, env: dict[str, int]):
-        value = self.expression.run(env)
-        env[self.var_name] = value
+        """
+        힌트:
+          - expression.run(env)로 값을 계산해 변수에 저장한다.
+          - 저장 시 0..9999 범위를 만족하도록 정규화한다(음수 포함 주의).
+        """
+        raise NotImplementedError("AssignStatement.run을 구현한다.")
 
 
 class PrintStatement(Statement):
@@ -78,4 +77,8 @@ class PrintStatement(Statement):
         self.var_name = var_name
 
     def run(self, env: dict[str, int]):
-        print(f'{self.var_name} = {env[self.var_name]}')
+        """
+        힌트:
+          - 출력 형식은 'a = 1234' 와 같다. 
+        """
+        raise NotImplementedError("PrintStatement.run을 구현한다.")
