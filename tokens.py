@@ -22,6 +22,9 @@ class Token(enum.Enum):
     NUMBER = 8
     MULTIPLIED_VARIABLE = 9  # e.g. 2x, 3a
 
+    # 추가
+    IF = 10
+
 class Tokenizer:
     """
     주어진 문자열을 token 단위로 나누어 반환하는 클래스.

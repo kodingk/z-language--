@@ -1,7 +1,4 @@
-from token import Token
-
-
-EVAL_BOUND = 10000
+from tokens import Token
 
 
 class Statement:
@@ -28,7 +25,7 @@ class RepeatStatement(Statement):
         """
         힌트:
           - 내부 문장들을 count 번 실행한다.
-          - BeginStatement 의 동작 과정을 이해하도록 한다. 
+          - BeginStatement 의 동작 과정을 이해하도록 한다.
         """
         raise NotImplementedError("RepeatStatement.run을 구현한다.")
 
@@ -40,10 +37,9 @@ class ExpressionStatement(Statement):
     def run(self, env: dict[str, int]) -> int:
         """
         힌트:
-          - parse_assign 에서 호출할 것이다. 해당 매소드에서 tokens 에 무엇이 들어가는지를 살펴본다. 
+          - parse_assign 에서 호출할 것이다. 해당 매소드에서 tokens 에 무엇이 들어가는지를 살펴본다.
           - 토큰을 좌→우로 보며 + / - 를 적용해 값을 계산한다.
           - 개별 항은 eval_unit(...)으로 해석한다.
-          - 모듈러를 사용한다. 
         """
         raise NotImplementedError("ExpressionStatement.run을 구현한다.")
 
@@ -67,7 +63,6 @@ class AssignStatement(Statement):
         """
         힌트:
           - expression.run(env)로 값을 계산해 변수에 저장한다.
-          - 저장 시 0..9999 범위를 만족하도록 정규화한다(음수 포함 주의).
         """
         raise NotImplementedError("AssignStatement.run을 구현한다.")
 
@@ -79,6 +74,6 @@ class PrintStatement(Statement):
     def run(self, env: dict[str, int]):
         """
         힌트:
-          - 출력 형식은 'a = 1234' 와 같다. 
+          - 출력 형식은 'a = 1234' 와 같다.
         """
         raise NotImplementedError("PrintStatement.run을 구현한다.")

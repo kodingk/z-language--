@@ -1,4 +1,4 @@
-from token import Tokenizer, Token
+from tokens import Tokenizer, Token
 from statement import Statement, ExpressionStatement, BeginStatement, RepeatStatement, PrintStatement, AssignStatement
 
 class Parser:
