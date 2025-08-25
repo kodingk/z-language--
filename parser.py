@@ -4,7 +4,6 @@ from statement import Statement, ExpressionStatement, BeginStatement, RepeatStat
 class Parser:
     def __init__(self, src: str):
         self.tokenizer = Tokenizer(src)  # 다음 토큰을 받아 오는 Tokenizer 객체
-        self.env = {}  # 변수를 저장하는 딕셔너리
 
     def parse_statement(self) -> Statement | None:
         """
